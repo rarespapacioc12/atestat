@@ -2,6 +2,27 @@
 
 *{
 	margin: 0;
+	background-color: #42418a;
+}
+
+
+/*scrollbar*/
+
+::-webkit-scrollbar{
+	width: 10px;
+}
+
+::-webkit-scrollbar-track{
+	background: #eeedf7;
+}
+
+::-webkit-scrollbar-thumb{
+	background: #7b70db;
+	border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+	background: #5349ad;
 }
 
 /*meniu*/
@@ -56,3 +77,18 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+
+/*introducere*/
+
+.introducere{
+	color: #eeedf7;
+	font-size: 30px;
+	font-family: Teko;
+	text-align: justify;
+	line-height: 30px;
+	margin: 10px;
+	background-color: #7170cf;
+	padding: 40px 100px;
+	border-radius: 20px;
+}	
