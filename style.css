@@ -28,6 +28,9 @@
 /*meniu*/
 
 .meniu{
+	margin:0px;
+	position: sticky;
+	top: 0;
 	height: 30%;
 	font-size: 40px;
 	background-color: #03045e;
@@ -70,7 +73,7 @@
 /*parallax*/
 
 .parallax{
-	background-image: url("home/images/fundal.jpeg");
+	background-image: url("home/images/fundal.png");
 	min-height: 500px;
 	background-attachment: fixed;
 	background-position: center;
@@ -91,4 +94,97 @@
 	background-color: #7170cf;
 	padding: 40px 100px;
 	border-radius: 20px;
-}	
+}
+
+/*footer*/
+
+.footer{
+	width: 100%;
+	height: 100px;
+	background-color: #636669;
+	color: #eeedf7;
+	font-size: 30px;
+	font-family: Times New Roman;
+	bottom: 0px;
+	position: relative;
+}
+
+.tabel_footer{
+	margin:0px 20px;
+	width:1880px;
+	height:100%;
+}
+
+#copyright{
+	background-color: #636669;
+	color: #eeedf7;
+	font-size: 20px;
+	font-family: Times New Roman;
+	width: 50%;
+}
+
+#copyright b{
+	background-color: #636669;
+	color: #eeedf7;
+	font-size: 20px;
+	font-family: Times New Roman;
+	width: 50%;
+}
+
+#contact{
+	background-color: #636669;
+	color: #eeedf7;
+	font-size: 20px;
+	font-family: Times New Roman;
+	width: 50%;
+}
+
+#contact a{
+	background-color: #636669;
+	text-decoration: none;
+	color: #eeedf7;
+	font-size: 20px;
+	font-family: Times New Roman;
+}
+
+#contact b {
+	background-color: #636669;
+	text-decoration: none;
+	color: #eeedf7;
+	font-size: 20px;
+	font-family: Times New Roman;
+}
+
+#contact a:hover{
+	color: #bdbbc9;
+}
+
+/*continut*/
+
+.box{
+	margin:0px;
+	background-color: #7573c7;
+	min-height: 880px;
+	padding:20px;
+}
+
+.continut{
+	width: width: calc(100% - 80px);
+	min-height: 840px;
+	background-color: #babae8;
+	border-radius: 30px;
+	padding: 40px;
+	color: #f3f2f7;
+	font-size: 60px;
+	font-family: Teko;
+	text-align: justify;
+	line-height: 30px;
+}
+
+.continut ol{
+	background-color: #babae8;
+}
+
+.continut ol li{
+	background-color: #babae8;
+}
