@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Generator Grafuri</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../style.css">
+	<script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../index.html">HOME</a></td>
+				<td><a href="../teorie/teorie.html">TEORIE</a></td>
+				<td><a href="../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Generator Grafuri</h2>
+
+			<form id="form_graf" style="background-color: #babae8;">
+				<textarea id="input_muchii" rows="6" cols="50" placeholder="Exemplu:
+A-B
+B-(2)-C" style="background-color: #f9f9f9; color: black; border: 2px solid black;"></textarea><br><br>
+				<button type="button" onclick="genereazaGraf()" style="background-color: #babae8;font-size: 40px;font-family: Teko;color:#f3f2f7;border-radius:10px; border:2px solid #f3f2f7;">Generează</button>
+				<button type="button" onclick="reseteazaGraf()" style="background-color: #babae8;font-size: 40px;font-family: Teko;color:#f3f2f7;border-radius:10px; border:2px solid #f3f2f7;">Resetează</button>
+			</form>
+
+			<div id="container_grafic" style="margin-top:20px; padding:10px; border: 2px solid black; background-color: #f9f9f9;">
+				<div id="grafic" style="height: 500px;background-color: #f9f9f9; color: black;"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+    <script>
+        var network = null;
+        
+        function genereazaGraf() {
+            var inputText = document.getElementById("input_muchii").value.trim();
+            if (inputText === "") {
+                alert('Te rog să introduci cel puțin o muchie!');
+                return;
+            }
+            var input = inputText.split(/\r?\n/);
+            var noduri = new Set();
+            var muchii = [];
+        
+            for (var linie of input) {
+                linie = linie.trim();
+                if (linie === "") continue;
+        
+                let matchCuCost = linie.match(/^(\w+)-\((-?\d+)\)-(\w+)$/);
+                let matchSimplu = linie.match(/^(\w+)-(\w+)$/);
+        
+                if (matchCuCost) {
+                    let from = matchCuCost[1];
+                    let cost = matchCuCost[2];
+                    let to = matchCuCost[3];
+        
+                    noduri.add(from);
+                    noduri.add(to);
+                    muchii.push({
+                        from: from,
+                        to: to,
+                        label: cost,
+                        width: 3,
+                        font: {align: 'middle', color: 'black'},
+                        color: {color: 'black'}
+                    });
+                } else if (matchSimplu) {
+                    let from = matchSimplu[1];
+                    let to = matchSimplu[2];
+        
+                    noduri.add(from);
+                    noduri.add(to);
+                    muchii.push({
+                        from: from,
+                        to: to,
+                        width: 1,
+                        color: {color: 'black'}
+                    });
+                } else {
+                    alert('Format invalid la linia: ' + linie);
+                    return;
+                }
+            }
+        
+            var nodes = Array.from(noduri).map(nod => ({
+                id: nod,
+                label: nod,
+                shape: 'circle',
+                size: 25,
+                color: {
+                    background: '#ffffff',
+                    border: 'black',
+                    highlight: {
+                        background: '#ffffff',
+                        border: 'black'
+                    }
+                },
+                font: {color: 'black'}
+            }));
+        
+            var container = document.getElementById('grafic');
+            container.innerHTML = ""; 
+        
+            var data = { nodes: nodes, edges: muchii };
+            var options = {
+                layout: {improvedLayout: true},
+                edges: {
+                    smooth: {type: 'dynamic'},
+                    font: {align: 'middle', color: 'black'},
+                    color: {color: 'black'}
+                },
+                nodes: {borderWidth: 2, shadow: false},
+                physics: {
+                    enabled: true,
+                    stabilization: {enabled: true, iterations: 200}
+                },
+                interaction: {
+                    dragNodes: false,
+                    dragView: true,
+                    zoomView: true
+                },
+                configure: {enabled: false} 
+            };
+        
+            network = new vis.Network(container, data, options);
+
+            network.on("beforeDrawing", function (ctx) {
+                ctx.save();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.restore();
+            });
+
+            network.once("stabilizationIterationsDone", function () {
+                network.moveTo({
+                    scale: 3.0, 
+                    animation: true
+                });
+            });
+
+
+        }
+        
+        function reseteazaGraf() {
+            document.getElementById("input_muchii").value = "";
+            document.getElementById("grafic").innerHTML = "<div style='height: 500px; background-color: #ffffff;'></div>";
+            network = null;
+        }
+        </script>
+        
+        
+        
+</body>
+</html>
