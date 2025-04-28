@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Algoritmul lui Dijkstra</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../algoritmi.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Algoritmul lui Dijkstra</h2>
+			<p>Algoritmul lui Dijkstra este utilizat pentru a calcula cel mai scurt drum de la un vârf sursă la toate celelalte vârfuri dintr-un graf ponderat fără muchii de cost negativ.</p>
+
+			<h2>Descriere</h2>
+			<p>Se pleacă de la vârful sursă și se explorează succesiv vârfurile cele mai apropiate, actualizând costurile drumurilor parcurse. La fiecare pas alegem vârful nevizitat cu distanța minimă.</p>
+
+			<h2>Pseudocod (variantă pătratică - O(n^2))</h2>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Dijkstra(n, start, cost):
+    inițializează distanțele tuturor vârfurilor cu infinit
+    distanța[start] = 0
+    marchează toate vârfurile ca nevizitate
+
+    for i = 1 to n:
+        alege vârful nevizitat cu distanța minimă
+        marchează-l ca vizitat
+        pentru fiecare vecin u al vârfului curent:
+            dacă distanța curentă + costul către u < distanța[u]:
+                actualizează distanța[u]</code></pre>
+
+			<h2>Pseudocod (variantă cvasiliniară - O((n + m) log n))</h2>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function DijkstraHeap(n, start, lista_adiacenta):
+    inițializează distanțele cu infinit
+    distanța[start] = 0
+    creează o coadă de priorități (heap)
+    adaugă (0, start) în heap
+
+    while heap nu este gol:
+        (dist, v) = extrage minim din heap
+        procesează vârful
+        pentru fiecare vecin (u, cost) al lui v:
+            dacă distanța[v] + cost < distanța[u]:
+                actualizează distanța[u]
+                adaugă (distanța[u], u) în heap</code></pre>
+
+			<h2>Explicații</h2>
+			<p>În varianta pătratică, la fiecare pas căutăm manual minimul dintre vârfurile nevizitate. În varianta cvasiliniară folosim o coadă de priorități (heap) pentru a obține rapid vârful cu distanța minimă.</p>
+			<p>Heap-ul reduce timpul de extragere a minimului și actualizarea distanțelor, astfel accelerând algoritmul pentru grafuri mari și dense.</p>
+
+			<h2>Exemplu de aplicare</h2>
+			<p>Graful:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">A -1- B
+|    |
+4    2
+|    |
+C -1- D</code></pre>
+			<p>Pornind din A:</p>
+			<ul>
+				<li>Distanța la A = 0</li>
+				<li>Distanța la B = 1</li>
+				<li>Distanța la C = 4</li>
+				<li>Distanța la D = 3</li>
+			</ul>
+
+			<h2>Complexitate</h2>
+			<ul>
+				<li>Complexitate timp (vector simplu): O(n^2)</li>
+				<li>Complexitate timp (heap): O((n + m) log n)</li>
+				<li>Complexitate spațiu: O(n + m)</li>
+			</ul>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

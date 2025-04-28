@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Algoritmul Roy-Floyd</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../algoritmi.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Algoritmul Roy-Floyd</h2>
+			<p>Algoritmul Roy-Floyd, cunoscut și ca Floyd-Warshall, este utilizat pentru a determina drumurile minime între toate perechile de vârfuri într-un graf ponderat (cu sau fără cicluri negative, dar fără cicluri negative de cost total negativ).</p>
+
+			<h2>Descriere</h2>
+			<p>Se pornește de la o matrice a costurilor (matricea de adiacență, unde cost[i][j] este costul arcului de la i la j, sau infinit dacă nu există arc). Se încearcă îmbunătățirea drumurilor existente trecând prin fiecare vârf intermediar.</p>
+
+			<h2>Pseudocod</h2>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>function RoyFloyd(n, cost):
+    for k = 1 to n:
+        for i = 1 to n:
+            for j = 1 to n:
+                if cost[i][k] + cost[k][j] < cost[i][j]:
+                    cost[i][j] = cost[i][k] + cost[k][j]</code></pre>
+
+			<h2>Explicații</h2>
+			<p>Se consideră toate tripletele (i, j, k) și verificăm dacă drumul de la i la j prin k este mai scurt decât drumul direct de la i la j. Dacă da, actualizăm costul.</p>
+			<p>Ordinea buclelor este importantă: bucla externă peste k asigură că vârful k este deja luat în calcul înainte de a procesa următoarele combinații.</p>
+
+			<h2>Exemplu de aplicare</h2>
+			<p>Având matricea inițială:</p>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>0   3 INF
+ 2   0   5
+ INF INF 0</code></pre>
+			<p>Apelăm algoritmul și după aplicare vom avea matricea:</p>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>0   3   8
+ 2   0   5
+ INF INF 0</code></pre>
+
+			<h2>Complexitate</h2>
+			<ul>
+				<li>Complexitate timp: O(n^3)</li>
+				<li>Complexitate spațiu: O(n^2)</li>
+			</ul>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

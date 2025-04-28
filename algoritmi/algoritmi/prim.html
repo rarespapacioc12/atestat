@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Algoritmul lui Prim</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../algoritmi.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Algoritmul lui Prim</h2>
+			<p>Algoritmul lui Prim este folosit pentru a construi arborele de acoperire minimă (MST) al unui graf ponderat conex. MST este un subgraf fără cicluri care conectează toate vârfurile la cost minim total.</p>
+
+			<h2>Descriere</h2>
+			<p>Prim începe de la un vârf arbitrar și extinde arborele alegând muchia de cost minim care duce la un nod încă neinclus.</p>
+
+			<h2>Varianta clasică O(n^2) (folosind matrice de adiacență)</h2>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function PrimMatrix(n, cost):
+    inițializează distanțele cu infinit
+    inițializează vizitat[] = false
+    distanța[start] = 0
+    vizitat[start] = true
+
+    pentru i = 1 la n:
+        alege vârful nevizitat cu distanța minimă, fie curent acest nod
+        vizitat[curent] = true
+        pentru fiecare vârf v:
+            dacă există muchie (curent, v), v nu e vizitat și costul e mai mic:
+                actualizează distanța[v]</code></pre>
+
+			<h2>Varianta optimizată O((n + m) log n) (folosind heap)</h2>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function PrimHeap(n, lista_adiacenta):
+    initializează distanțele cu infinit
+    initializează vizitat[] = false
+    creează heap cu (0, start)
+
+    while heap nu este gol:
+        extrage minim (cost, v)
+        dacă v este deja vizitat:
+            continuă
+        marchează v ca vizitat
+        pentru fiecare vecin (u, costu) al lui v:
+            dacă u nu este vizitat și costu < distanță[u]:
+                distanță[u] = costu
+                adaugă (distanță[u], u) în heap</code></pre>
+
+			<h2>Explicații</h2>
+			<p>În varianta pătratică căutăm manual minimul la fiecare pas. În varianta cu heap (priority queue), putem găsi și actualiza rapid costurile minime.</p>
+
+			<h2>Exemplu de aplicare</h2>
+			<p>Graful:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">A -1- B
+|    |
+4    2
+|    |
+C -1- D</code></pre>
+			<p>Prim poate construi arborele A-B-D-C cu cost total 4.</p>
+
+			<h2>Complexitate</h2>
+			<ul>
+				<li>O(n^2) cu matrice de adiacență</li>
+				<li>O((n + m) log n) cu heap (pentru grafuri rare)</li>
+			</ul>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

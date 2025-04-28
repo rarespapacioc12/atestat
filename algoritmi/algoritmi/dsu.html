@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Disjoint Set Union (DSU)</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../algoritmi.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Disjoint Set Union (DSU)</h2>
+			<p>Structura de date Disjoint Set Union (DSU) sau Union-Find este utilizată pentru a gestiona o colecție de mulțimi disjuncte, cu operații eficiente de reuniune și apartenență.</p>
+
+			<h2>Operații separate</h2>
+
+			<h3>Inițializare</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Initialize(n):
+    pentru fiecare vârf i:
+        parinte[i] = i
+        rang[i] = 0
+        dimensiune[i] = 1</code></pre>
+
+			<h3>Find cu compresie de drum</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Find(x):
+    dacă parinte[x] != x:
+        parinte[x] = Find(parinte[x])
+    return parinte[x]</code></pre>
+
+			<h3>Union după înălțime (rang)</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function UnionByHeight(x, y):
+    rx = Find(x)
+    ry = Find(y)
+    dacă rx == ry:
+        return
+    dacă rang[rx] < rang[ry]:
+        parinte[rx] = ry
+    altfel dacă rang[rx] > rang[ry]:
+        parinte[ry] = rx
+    altfel:
+        parinte[ry] = rx
+        rang[rx] += 1</code></pre>
+
+			<h3>Union după dimensiune (size)</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function UnionBySize(x, y):
+    rx = Find(x)
+    ry = Find(y)
+    dacă rx == ry:
+        return
+    dacă dimensiune[rx] < dimensiune[ry]:
+        parinte[rx] = ry
+        dimensiune[ry] += dimensiune[rx]
+    altfel:
+        parinte[ry] = rx
+        dimensiune[rx] += dimensiune[ry]</code></pre>
+
+			<h2>Explicații</h2>
+			<p><strong>Initialize:</strong> Setează fiecare nod să fie părintele său, cu rang 0 și dimensiune 1.</p>
+			<p><strong>Find:</strong> Aplică "path compression" pentru a accelera căutările ulterioare.</p>
+			<p><strong>UnionByHeight:</strong> Atașează arborele cu rang mai mic la cel cu rang mai mare pentru a menține arborii jos.</p>
+			<p><strong>UnionBySize:</strong> Atașează arborele mai mic (ca număr de noduri) la cel mai mare, pentru echilibrare optimă.</p>
+
+			<h2>Exemplu de aplicare</h2>
+			<p>Inițial:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">1  2  3  4  5</code></pre>
+			<p>Apelăm UnionByHeight(1, 2) → 1 și 2 în aceeași mulțime.<br>
+			Apelăm UnionBySize(3, 4) → 3 și 4 în aceeași mulțime.<br>
+			Apelăm UnionByHeight(2, 3) → 1, 2, 3, 4 în aceeași mulțime.</p>
+
+			<h2>Complexitate</h2>
+			<ul>
+				<li>Operații Find și Union: aproape O(1) timp amortizat (O(α(n))) (unde α reprezintă inversul funcției Ackermann).</li>
+				<li>Complexitate spațiu: O(n)</li>
+			</ul>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

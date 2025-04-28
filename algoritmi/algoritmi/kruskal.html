@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Algoritmul lui Kruskal</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../algoritmi.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Algoritmul lui Kruskal</h2>
+			<p>Algoritmul lui Kruskal este folosit pentru a construi arborele de acoperire minimă (MST) al unui graf ponderat conex. Ideea de bază este alegerea muchiilor de cost minim care nu formează cicluri.</p>
+
+			<h2>Descriere</h2>
+			<p>Se sortează toate muchiile grafului în funcție de cost, apoi se adaugă în MST doar muchiile care unesc componente disjuncte, folosind DSU (Disjoint Set Union).</p>
+
+			<h2>Pseudocod Kruskal</h2>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Kruskal(n, lista_muchii):
+    initializează DSU(n)
+    sortează lista_muchii crescător după cost
+    MST = []
+
+    pentru fiecare muchie (u, v, cost):
+        dacă Find(u) != Find(v):
+            adaugă muchia în MST
+            Union(u, v)</code></pre>
+
+			<h2>Funcțiile DSU folosite</h2>
+			<h3>Inițializare</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Initialize(n):
+    pentru fiecare vârf i:
+        parinte[i] = i
+        rang[i] = 0</code></pre>
+
+			<h3>Find cu compresie de drum</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Find(x):
+    dacă parinte[x] != x:
+        parinte[x] = Find(parinte[x])
+    return parinte[x]</code></pre>
+
+			<h3>Union după rang</h3>
+			<pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important; padding:10px; border-radius:10px">function Union(x, y):
+    rx = Find(x)
+    ry = Find(y)
+    dacă rx == ry:
+        return
+    dacă rang[rx] < rang[ry]:
+        parinte[rx] = ry
+    altfel dacă rang[rx] > rang[ry]:
+        parinte[ry] = rx
+    altfel:
+        parinte[ry] = rx
+        rang[rx] += 1</code></pre>
+
+			<h2>Explicații</h2>
+			<p>Se sortează toate muchiile și se procesează în ordine crescătoare a costului. Se adaugă doar acele muchii care unesc două componente diferite (detectate cu DSU). Astfel evităm formarea ciclurilor.</p>
+
+			<h2>Exemplu de aplicare</h2>
+			<p>Lista muchiilor:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">(A, B, 1)
+(A, C, 4)
+(B, C, 2)
+(B, D, 5)
+(C, D, 3)</code></pre>
+			<p>Muchiile selectate vor fi A-B, B-C, C-D, cost total = 1+2+3=6.</p>
+
+			<h2>Complexitate</h2>
+			<ul>
+				<li>Sortare muchii: O(m log m)</li>
+				<li>Operații DSU: aproape O(1) amortizat</li>
+				<li>Complexitate totală: O(m log m)</li>
+			</ul>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
