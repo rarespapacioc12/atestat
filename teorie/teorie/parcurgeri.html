@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Parcurgerea Grafurilor</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../teorie.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2>Parcurgerea Grafurilor</h2>
+
+			<h2 id="bfs">1. Parcurgerea în Latime (BFS - Breadth-First Search)</h2>
+			<p>Parcurgerea în lățime explorează graful strat cu strat, adică vizitează mai întâi toți vecinii unui vârf înainte de a coborî mai adânc.</p>
+			<p>Se folosește o coadă (queue) pentru a memora vârfurile de vizitat.</p>
+			
+			<h3>Pseudocod BFS:</h3>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>function BFS(start):
+    creează o coadă goală
+    marchează start ca vizitat
+    adaugă start în coadă
+
+    while coada nu este goală:
+        v = coada.front()
+        procesează v
+        for fiecare vecin u al lui v:
+            dacă u nu este vizitat:
+                marchează u ca vizitat
+                adaugă u în coadă</code></pre>
+			
+			<h3>Exemplu de parcurgere:</h3>
+			<p>Având graful:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">A - B
+|   |
+C - D</code></pre>
+			<p>Pornind de la A, ordinea parcurgerii va fi: A, B, C, D.</p>
+
+			<h2 id="dfs">2. Parcurgerea în Adâncime (DFS - Depth-First Search)</h2>
+			<p>Parcurgerea în adâncime explorează cât mai mult posibil de-a lungul fiecărei ramuri înainte de a da înapoi.</p>
+			<p>Se folosește o stivă (stack) sau recursivitate.</p>
+
+			<h3>Pseudocod DFS (iterativ):</h3>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>function DFS(start):
+    creează o stivă goală
+    marchează start ca vizitat
+    adaugă start în stivă
+
+    while stiva nu este goală:
+        v = stiva.pop()
+        procesează v
+        for fiecare vecin u al lui v:
+            dacă u nu este vizitat:
+                marchează u ca vizitat
+                adaugă u în stivă</code></pre>
+
+			<h3>Pseudocod DFS (recursiv):</h3>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>function DFS(v):
+    marchează v ca vizitat
+    procesează v
+    for fiecare vecin u al lui v:
+        dacă u nu este vizitat:
+            DFS(u)</code></pre>
+
+			<h3>Exemplu de parcurgere:</h3>
+			<p>Având graful:</p>
+			<pre style="background-color: #babae8;"><code style="background-color: #babae8;">A - B
+|   |
+C - D</code></pre>
+			<p>Pornind de la A, ordinea parcurgerii în adâncime poate fi: A, B, D, C.</p>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

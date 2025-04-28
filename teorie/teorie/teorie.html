@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<title>Teorie Grafuri</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Tomorrow&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="meniu">
+		<table>
+			<tr>
+				<td><a href="../../index.html">HOME</a></td>
+				<td><a href="../teorie.html">TEORIE</a></td>
+				<td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+				<td><a href="../../generator/generator.html">GENERATOR</a></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box" id="top">
+		<div class="backbutton"><a href="../teorie.html">&larr; Back</a></div>
+		<div class="continut" style="background-color: #babae8;">
+			<h2 id="terminologie">Terminologie</h2>
+			<p>Un graf este o structură matematică formată din două mulțimi: o mulțime de vârfuri și o mulțime de muchii. Vârfurile sunt elementele fundamentale, iar muchiile sunt conexiunile dintre ele. Grafurile pot fi neorientate (muchiile nu au sens) sau orientate (muchiile au o direcție). Astfel, formal spus, un graf se poate defini drept G = (V, E), unde V este mulțimea vârfurilor, iar E mulțimea muchiilor.</p>
+
+			<h2 id="grad">Gradul unui vârf</h2>
+			<p>Gradul unui vârf reprezintă numărul de muchii care sunt incidente cu acel vârf. În grafurile orientate, distingem între gradul intern (număr de muchii care intră) și gradul extern (număr de muchii care ies). Cunoașterea gradului fiecărui vârf ajută la identificarea proprietăților grafurilor, cum ar fi existența ciclurilor sau conectivitatea.</p>
+			<p><em>Exemplu: </em> Într-un graf cu muchiile {A-B, A-C}, gradul vârfului A este 2.</p>
+
+			<h2 id="reprezentare">Reprezentarea grafurilor neorientate</h2>
+			<p>Un graf poate fi reprezentat în mai multe moduri, fiecare având avantaje în funcție de aplicație. Matricea de adiacență, lista de muchii și listele de adiacențe sunt cele mai utilizate metode de stocare și analiză a grafurilor. Pentru a demonstra fiecare modalitate, vom particulariza pentru graful următor:</p>
+            <img src="images/grafabc.png" style="width: 200px;">
+
+			<h3 id="matrice">Matricea de adiacență</h3>
+			<p>Este o matrice pătratică de dimensiune n x n, unde n este numărul de vârfuri. Elementul (i, j) este 1 dacă există o muchie între vârfurile i și j și 0 altfel. Această reprezentare este eficientă pentru grafurile dense.</p>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'> A B C
+A 0 1 1
+B 1 0 1
+C 1 1 0</code></pre>
+
+			<h3 id="muchii">Lista de muchii</h3>
+			<p>Este o listă de perechi de vârfuri conectate. Este utilă pentru parcurgerea rapidă a tuturor muchiilor și este eficientă pentru grafurile rare.</p>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>E = {(A, B), (A, C), (B, C)}</code></pre>
+
+			<h3 id="adiacenta">Liste de adiacențe (de vecini)</h3>
+			<p>Fiecare vârf are asociată o listă de vârfuri vecine. Această reprezentare este cea mai eficientă pentru grafuri sparse și permite parcurgerea rapidă a vecinilor unui vârf.</p>
+			<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>A: B, C
+ B: A, C
+ C: A, B</code></pre>
+
+			<h2 id="partial">Graf parțial. Subgraf. Graf complementar</h2>
+			<p>Un graf parțial se obține prin eliminarea unor muchii și/sau vârfuri dintr-un graf dat. <br>Un subgraf este un graf format dintr-o submulțime de vârfuri și toate muchiile existente între ele în graful inițial. <br>Graful complementar are aceleași vârfuri ca graful original, dar include toate muchiile care nu există în graful dat.</p>
+			<p><em>Exemplu: </em> Dacă într-un graf A și B nu sunt conectate, în complementar vor fi conectate.</p>
+
+			<h2 id="nul">Graf nul. Graf complet. Graf regulat. Graf bipartit</h2>
+			<ul>
+				<li><strong>Graf nul</strong>: Nu există nicio muchie între vârfuri. Toate vârfurile sunt izolate.</li>
+				<li><strong>Graf complet</strong>: Există o muchie între fiecare pereche posibilă de vârfuri. Acest tip de graf este notat cu K<sub style="background-color: #babae8;">n</sub>, unde n este numărul de vârfuri.</li>
+				<li><strong>Graf regulat</strong>: Toate vârfurile au același grad. Se întâlnesc frecvent în rețele echilibrate.</li>
+				<li><strong>Graf bipartit</strong>: Vârfurile pot fi împărțite în două mulțimi disjuncte astfel încât fiecare muchie leagă un vârf dintr-o mulțime cu un vârf din cealaltă.</li>
+			</ul>
+			<p><em>Exemplu bipartit:</em> Mulțimile {A, C} și {B, D} cu muchii A-B, A-D, C-B, C-D.</p>
+            <img src="images/bipartit.png" style="width: 200px;">
+
+			<h2 id="conexitate">Conexitate</h2>
+			<p>Un graf este conex dacă există un drum (succesiune de muchii) între orice două vârfuri ale sale. Conexitatea unui graf este esențială pentru aplicarea multor algoritmi, cum ar fi cei de parcurgere sau de căutare a drumurilor minime.</p>
+			<p><em>Exemplu: </em> Un graf cu toate vârfurile conectate direct sau indirect este conex.</p>
+
+			<h2 id="lant">Lanț, ciclu</h2>
+			<p>Un lanț este o succesiune de vârfuri și muchii în care fiecare vârf este conectat la următorul printr-o muchie, fără repetarea muchiilor. Un ciclu este un lanț care începe și se termină în același vârf și are toate muchiile și vârfurile distincte (exceptând primul/ultimul vârf).</p>
+			<p><em>Exemplu ciclu (pe graful inițial): </em> A - B - C - A.</p>
+
+			<h2 id="conex">Graf conex. Componente conexe</h2>
+			<p>Un graf conex are o singură componentă conexă, adică toate vârfurile sunt interconectate. Dacă un graf nu este conex, el poate fi împărțit în componente conexe, fiecare fiind un subgraf conex maxim.</p>
+			<p><em>Exemplu: </em> Un graf cu două grupuri de vârfuri separate are două componente conexe.</p>
+
+			<h2 id="arbore">Arbore. Pădure</h2>
+			<p>Un arbore este un graf conex și aciclic, adică un graf fără cicluri în care există exact un drum între orice două vârfuri. Un arbore cu n vârfuri are întotdeauna n-1 muchii. O pădure este o mulțime de arbori neconectați între ei.</p>
+			<p><em>Exemplu arbore: </em> Un graf liniar A-B-C-D este un arbore.</p>
+			<p><em>Exemplu pădure: </em> Două grafuri formate fiecare din câte două vârfuri conectate A-B și C-D.</p>
+		</div>
+		<div class="backbutton" style="margin-top:40px"><a href="#top">Top ↑</a></div>
+	</div>
+
+	<div class="footer">
+		<table class="tabel_footer" cellspacing="0">
+			<tr valign="middle">
+				<td id="copyright">
+					<b>Papacioc Rareș-Ioan<br><br>
+					© 2025 • Toate drepturile rezervate</b>
+				</td>
+				<td id="contact" align="right">
+					<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+					<b>Telefon:</b> <a href="tel:+40721381621" target="_blank">0721 381 621</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <title> Teorie - Grafuri Hamiltoniene </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../style.css">
+    <!-- Fonturi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    
+    <style>
+    pre[class*="language-"], 
+        code[class*="language-"] {
+            background-color: #272822 !important;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        pre[class*="language-"] {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1em !important;
+            overflow: auto;
+        }
+
+        /* Culori de sintaxă standardizate */
+        .token.keyword { color: #f92672; }
+        .token.function { color: #61dafb; }
+        .token.string { color: #a6e22e; }
+        .token.number { color: #ae81ff; }
+</style>
+</head>
+<body>
+    <div class="meniu">
+        <table>
+            <tr>
+                <td><a href="../../index.html">HOME</a></td>
+                <td><a href="../teorie.html">TEORIE</a></td>
+                <td><a href="../../algoritmi/algoritmi.html">ALGORITMI</a></td>
+                <td><a href="../../generator/generator.html">GENERATOR</a></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="box"  style="padding:20px 0px 0px 0px" id="#top">
+		<div class = "backbutton" style="margin-left:20px"> <a href="../teorie.html"> ← Back </a> </div>
+        <div class="continut" style="background-color: #babae8; margin-left:20px; margin-right:20px;margin-top:0px;margin-bottom:20px">
+            <!-- Secțiunea 1: Definiție -->
+            <div class="continut" style="background-color: #babae8;">
+				<!-- Secțiunea 1: Definiție extinsă -->
+				<h2>1. Teorie Avansată - Grafuri Hamiltoniene</h2>
+				
+				<h3>1.1 Definiții Formale</h3>
+				<p>Un <strong>ciclu hamiltonian</strong> într-un graf G=(V,E) este un ciclu simplu care conține fiecare vârf din V exact o dată.</p>
+				
+				<div class="definitie">
+					<p><strong>Graf Hamiltonian</strong>: ∃ un ciclu care vizitează fiecare vârf exact o dată și revine la start.</p>
+					<p><strong>Graf Semi-Hamiltonian</strong>: ∃ un drum (nu ciclu) care vizitează fiecare vârf exact o dată.</p>
+				</div>
+
+				<h3>1.2 Istoric</h3>
+				<p>Conceptul a fost introdus de William Rowan Hamilton în 1859 prin <em>"Jocul Icosian"</em>, un puzzle care cerea găsirea unui ciclu pe un dodecaedru.</p>
+				
+				<h3>1.3 Teoreme Fundamentale</h3>
+				
+				<div class="teorema">
+					<h4 style="background-color: #babae8;">Teorema lui Dirac (1952)</h4>
+					<p>Pentru un graf G cu n ≥ 3 vârfuri:</p>
+					<p>Dacă δ(G) ≥ n/2 ⇒ G este hamiltonian</p>
+					<p>unde δ(G) = gradul minim al oricărui vârf.</p>
+					<div class="exemplu">
+						<p><strong>Exemplu:</strong> În K<sub style="background-color: #babae8;">5</sub> (n=5):</p>
+						<p>δ(G) = 4 ≥ 2.5 ⇒ K<sub style="background-color: #babae8;">5</sub> este hamiltonian</p>
+					</div>
+				</div>
+				
+				<div class="teorema">
+					<h4 style="background-color: #babae8;">Teorema lui Ore (1960)</h4>
+					<p>Pentru un graf G cu n ≥ 3 vârfuri:</p>
+					<p>Dacă ∀ perechi de vârfuri neadiacente u și v, deg(u) + deg(v) ≥ n ⇒ G este hamiltonian</p>
+					<div class="exemplu" style="background-color: #babae8;">
+						<p><strong>Contraexemplu:</strong></p>
+						<img src="images/non-hamiltonian.png" alt="Graf nehamiltonian" style="max-width: 200px; background-color: #babae8;">
+					</div>
+				</div>
+
+				<h3>1.4 Condiții Suficiente vs. Necesare</h3>
+				<table class="tabel-teorie">
+					<tr>
+						<th style="background-color: #babae8;">Tip condiție</th>
+						<th style="background-color: #babae8;">Exemplu</th>
+						<th style="background-color: #babae8;">Importanță</th>
+					</tr>
+					<tr>
+						<td style="background-color: #babae8;">Suficientă</td>
+						<td style="background-color: #babae8;">Teorema lui Dirac</td>
+						<td style="background-color: #babae8;">Garantează existența ciclului</td>
+					</tr>
+					<tr>
+						<td style="background-color: #babae8;">Necesară</td>
+						<td style="background-color: #babae8;">Graf conex</td>
+						<td style="background-color: #babae8;">Prezic absența ciclului</td>
+					</tr>
+				</table>
+
+				<!-- Secțiunea 2: Complexitate -->
+				<h2>2. Complexitate Computațională</h2>
+				
+				<div class="complexitate">
+					<h3>2.1 Clasa de complexitate</h3>
+					<p>Problema determinării existenței unui ciclu hamiltonian este:</p>
+					<ul>
+						<li><strong>NP-completă</strong> (general case)</li>
+						<li><strong>Rezolvabilă în timp polinomial</strong> pentru grafuri:
+							<ul>
+								<li>Complete</li>
+								<li>Planare fără vârfuri de grad 2</li>
+								<li>Cu anumite proprietăți speciale</li>
+							</ul>
+						</li>
+					</ul>
+					
+					<h3>2.2 Strategii de Rezolvare</h3>
+					<ol>
+						<li><strong>Backtracking</strong> (O(n!)) - forță brută</li>
+						<li><strong>Programare dinamică</strong> (O(n²2ⁿ)) - Held-Karp algorithm</li>
+						<li><strong>Heuristici</strong>:
+							<ul>
+								<li>Nearest Neighbor</li>
+								<li>Lin-Kernighan</li>
+							</ul>
+						</li>
+					</ol>
+				</div>
+            
+            <!-- Secțiunea 2: Algoritmi -->
+            <h2>2. Algoritmi pentru Cicluri Hamiltoniene</h2>
+            
+            <h3>Backtracking (Python)</h3>
+            <pre style="background-color: #272822 !important; padding:10px; border-radius:10px"><code style="background-color: #272822 !important;">def hamiltonian_cycle(graph, path, current_vertex):
+    # Dacă am vizitat toate vârfurile și există muchie între primul și ultimul
+    if len(path) == len(graph) and graph[path[0]][path[-1]] == 1:
+        return path + [path[0]]
+    
+    for neighbor in range(len(graph)):
+        if graph[current_vertex][neighbor] == 1 and neighbor not in path:
+            new_path = hamiltonian_cycle(graph, path + [neighbor], neighbor)
+            if new_path:
+                return new_path
+    return None
+
+# Exemplu de utilizare
+adj_matrix = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 1],
+    [1, 1, 0, 1],
+    [1, 1, 1, 0]
+]
+print(hamiltonian_cycle(adj_matrix, [0], 0))</code></pre>
+
+            <!-- Secțiunea 3: Teoreme -->
+            <h2>3. Teoreme Importante</h2>
+            <pre><code class="language-markdown">**Teorema lui Dirac** (1952):
+- Dacă δ(G) ≥ n/2 ⇒ G este hamiltonian
+- Unde δ(G) = gradul minim
+
+**Teorema lui Ore** (1960):
+- Dacă deg(u) + deg(v) ≥ n pentru orice u,v neadiacente
+- ⇒ G este hamiltonian</code></pre>
+            
+            <!-- Secțiunea 4: Exemple -->
+            <h2>4. Exemple</h2>
+            <h3>Graf complet K₄</h3>
+            <pre><code class="language-json">{
+    "type": "graf_complet",
+    "vârfuri": ["A", "B", "C", "D"],
+    "muchii": [
+        ["A-B"], ["A-C"], ["A-D"],
+        ["B-C"], ["B-D"],
+        ["C-D"]
+    ],
+    "hamiltonian": true,
+    "ciclu": "A-B-C-D-A"
+}</code></pre>
+        </div>
+    </div>
+	<div class = "backbutton" style="margin-top:40px;margin-left:20px"> <a href="#top"> Top ↑ </a> </div>
+    <div class = "footer">
+			<table class = "tabel_footer" cellspacing=0>
+				<tr valign = "middle">
+					<td id = "copyright">
+						<b>Papacioc Rareș-Ioan<br><br>
+						© 2025 • Toate drepturile rezervate</b>
+					</td>
+					<td id = "contact" align="right">
+						<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com?cc=feedback@xyz.com&bcc=contact@xyz.org&subject=Mail to Rareș Papaciocs&body=Demo email" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+						<b>Telefon:</b> <a href="tel:+40721381621" target="_blank"> 0721 381 621 </a>
+					</td>
+				</tr>
+			</table>
+		</div>
+</body>
+</html>
