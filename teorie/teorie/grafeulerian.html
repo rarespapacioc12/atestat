@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<title> Teorie - Grafuri Euleriene </title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../../style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class = "meniu">
+			<table>
+				<tr>
+					<td> <a href = "../../index.html">HOME</a> </td>
+					<td> <a href = "../teorie.html">TEORIE</a> </td>
+					<td> <a href = "../../algoritmi/algoritmi.html">ALGORITMI</a> </td>
+					<td> <a href = "../../generator/generator.html">GENERATOR</a> </td>
+				</tr>
+			</table>
+		</div>
+		<div class = "box"  id="top">
+			<div class = "backbutton"> <a href="../teorie.html"> ← Back </a> </div>
+			<div class = "continut" style="background-color: #babae8;">
+				<h2>1. Definiție și Condiții</h2>
+				<p>Un <strong>graf eulerian</strong> este un graf în care există un <strong>ciclu eulerian</strong> – un ciclu care trece prin <strong>fiecare muchie o singură dată</strong> și se întoarce în vârful de plecare.</p>
+				
+				<p>Există două tipuri de grafuri euleriene:</p>
+				<ul>
+					<li><strong>Graf eulerian</strong> – conține un ciclu eulerian (închis).</li>
+					<li><strong>Graf semi-eulerian</strong> – conține un <strong>lanț eulerian</strong> (deschis, care nu se întoarce la punctul de start).</li>
+				</ul>
+
+				<h3>Condiții necesare și suficiente</h3>
+				<ul>
+					<li>Un graf <strong>conex</strong> este <strong>eulerian</strong> dacă și numai dacă <strong>toate vârfurile au grad par</strong>.</li>
+					<li>Un graf <strong>conex</strong> este <strong>semi-eulerian</strong> dacă și numai dacă <strong>exact două vârfuri au grad impar</strong> (acestea fiind capetele lanțului eulerian).</li>
+				</ul>
+
+				<h2>2. Algoritmi pentru Identificarea și Parcurgerea Grafurilor Euleriene</h2>
+				
+				<h3>Algoritmul lui Hierholzer (pentru găsirea ciclului eulerian)</h3>
+				<ol>
+					<li><strong>Alege un vârf de start</strong> (orice vârf pentru graf eulerian, un vârf cu grad impar pentru graf semi-eulerian).</li>
+					<li><strong>Parcurge graful</strong> folosind DFS până când nu mai poți avansa (toate muchiile din vârful curent au fost vizitate).</li>
+					<li><strong>Construiește ciclul</strong> mergând înapoi și adăugând vârfurile la soluție.</li>
+				</ol>
+
+				<h3>Pseudocod:</h3>
+				<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>stack = [start_vârf]
+		ciclu = []
+		while stack:
+			v = stack[-1]
+			if degree[v] > 0:
+				u = vecin nevizitat al lui v
+				stack.append(u)
+				elimină muchia (v, u)  
+			else:
+				ciclu.append(stack.pop())
+		return ciclu[::-1]</code></pre>
+				<h2>3. Aplicații ale Grafurilor Euleriene</h2>
+				<ul>
+					<li><strong>Problema podurilor din Königsberg</strong> (prima problemă de teoria grafurilor, rezolvată de Euler).</li>
+					<li><strong>Rutarea în rețele</strong> (optimizarea traseelor pentru camioane de gunoi, poștă etc.).</li>
+					<li><strong>Design de circuite electronice</strong> (parcurgerea tuturor conexiunilor fără repetiții).</li>
+				</ul>
+
+				<h2>4. Exemple</h2>
+				<h3>Exemplu de graf eulerian:</h3>
+				<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>Graful complet K₃ (3 vârfuri, toate conectate):
+		   A  
+		  / \  
+		 B---C  
+		Toate gradele sunt 2 (par) → ciclu eulerian: A-B-C-A.</code></pre>
+				
+				<h3> Exemplu de graf eulerian necomplet:</h3>
+				<img src="images/eulerian1.png">
+				
+				<h3>Exemplu de graf semi-eulerian:</h3>
+				<pre style='background-color: #47424a; border-radius:10px; padding:10px;'><code style='background-color: #47424a; border-radius:10px; padding:10px;'>Graful cu 4 vârfuri: A-B-C-D (lanț liniar).
+		Grade: A=1, B=2, C=2, D=1 → lanț eulerian: A-B-C-D.</code></pre>
+
+				<h2>5. Concluzie</h2>
+				<p>Grafurile euleriene sunt fundamentale în teoria grafurilor și au aplicații practice în logistica, electronică și optimizare. Condițiile lor (grade pare și conexitate) le fac ușor de identificat, iar algoritmi precum <strong>Hierholzer</strong> permit generarea eficientă a ciclurilor euleriene.</p>
+			</div>
+			<div class = "backbutton" style="margin-top:40px"> <a href="#top"> Top ↑ </a> </div>
+		</div>
+		<div class = "footer">
+			<table class = "tabel_footer" cellspacing=0>
+				<tr valign = "middle">
+					<td id = "copyright">
+						<b>Papacioc Rareș-Ioan<br><br>
+						© 2025 • Toate drepturile rezervate</b>
+					</td>
+					<td id = "contact" align="right">
+						<b>E-mail:</b> <a href="mailto:rares.papacioc9585@gmail.com?cc=feedback@xyz.com&bcc=contact@xyz.org&subject=Mail to Rareș Papaciocs&body=Demo email" target="_blank"> rares.papacioc9585@gmail.com</a><br><br>
+						<b>Telefon:</b> <a href="tel:+40721381621" target="_blank"> 0721 381 621 </a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
